@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!DOCTYPE project>
+
+<project name="liferay-ws-client" basedir="." default="generateJarFiles">
+	
+	<property name="liferay" value="/opt/liferay" />
+	
+	<property name="liferay-sdk" value="${liferay}/liferay-plugins-sdk-6.1.1"/>
+	<property file="${liferay-sdk}/build.${user.name}.properties" />
+	<property name="dependencies" value="${liferay}/projects-dependencies" />
+	
+	<path id="project-classpath">
+		<fileset dir="${dependencies}/${ant.project.name}-dependencies">
+			<include name="*.jar"/>
+		</fileset>
+	</path>
+	
+	<target name="copyDependenciesToServer">
+		<copy todir="${app.server.lib.global.dir}">
+			<fileset dir="${dependencies}/${ant.project.name}-dependencies">
+				<include name="*.jar"/>
+			</fileset>
+		</copy>
+	</target>
+	
+	<target name="clean">
+		<echo>Clean the temporary area</echo>
+		<delete dir="build"/>
+	</target>
+	
+	<target name="generateJarFiles" depends="clean">
+		
+		<echo>Create the temporary area</echo>
+		<mkdir dir="build"/>
+		<mkdir dir="build/class"/>
+		<mkdir dir="build/dist"/>
+		
+		<javac classpathref="project-classpath" target="1.5" srcdir="src" destdir="build/class" debug="true" />
+		
+		<jar destfile="build/dist/liferaywsclient.jar" basedir="build/class">
+			<include name="**/**"/>
+		</jar>
+		
+    	<mkdir dir="${dependencies}/cvrg-broker-service-dependencies"/>
+    	<copy todir="${dependencies}/cvrg-broker-service-dependencies" file="build/dist/liferaywsclient.jar" />
+
+	</target>
+	
+</project>
