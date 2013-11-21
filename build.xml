@@ -49,8 +49,8 @@
 			<include name="**/**"/>
 		</jar>
 		
-    	<mkdir dir="${dependencies}/cvrg-broker-service-dependencies"/>
-    	<copy todir="${dependencies}/cvrg-broker-service-dependencies" file="build/dist/liferaywsclient.jar" />
+    	<mkdir dir="${dependencies}/service-utilities-dependencies"/>
+    	<copy todir="${dependencies}/service-utilities-dependencies" file="build/dist/liferaywsclient.jar" />
 
 	</target>
 	
