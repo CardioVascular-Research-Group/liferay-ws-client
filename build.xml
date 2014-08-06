@@ -8,6 +8,7 @@
 	<property name="liferay-sdk" value="${liferay}/liferay-plugins-sdk-6.1.1"/>
 	<property file="${liferay-sdk}/build.${user.name}.properties" />
 	<property name="dependencies" value="${liferay}/projects-dependencies" />
+	<property name="tomcat-axis-lib" value="${app.server.deploy.dir}/axis2/WEB-INF/lib"/>
 	
 	<path id="project-classpath">
 		<fileset dir="${dependencies}/${ant.project.name}-dependencies">
@@ -51,7 +52,8 @@
 		
     	<mkdir dir="${dependencies}/service-utilities-dependencies"/>
     	<copy todir="${dependencies}/service-utilities-dependencies" file="build/dist/liferaywsclient.jar" />
-
+    	<copy todir="${tomcat-axis-lib}" file="build/dist/liferaywsclient.jar" />
+		
 	</target>
 	
 </project>
