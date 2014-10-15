@@ -44,7 +44,7 @@
 		<mkdir dir="build/class"/>
 		<mkdir dir="build/dist"/>
 		
-		<javac classpathref="project-classpath" target="1.5" srcdir="src" destdir="build/class" debug="true" />
+		<javac classpathref="project-classpath" target="1.5" srcdir="src/main/java" destdir="build/class" debug="true" />
 		
 		<jar destfile="build/dist/liferaywsclient.jar" basedir="build/class">
 			<include name="**/**"/>
